@@ -1,14 +1,13 @@
 import React from "react";
-import LinkArray from "./LinkArray";
 
-export default function Nav() {
+export default function Nav({LinkArray}) {
     return (
         <nav>
             <ul>
-                {LinkArray.map((link) => (<li>{link}</li>))}
-
+                {LinkArray.map(link => <li key= {link.id}>{link}</li>)}
             </ul>
         </nav >
-    )
+              
+    );
 }
 

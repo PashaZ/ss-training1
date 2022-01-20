@@ -1,10 +1,17 @@
 import React from "react";
+import {Link} from 'react-router-dom';
 
-export default function Product() {
+export default function Product({products}) {
 
-    return (
-        <div>
-            <h2>Product</h2>
-        </div>
-    )
+        return (
+        <ul>
+            {products.map(product=>
+            <li key={product.id}>
+                <Link to={`/product/${product.id}`}>
+                {product.name}
+                </Link>
+            </li>)}
+        </ul>
+    )     
 }
+   
