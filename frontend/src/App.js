@@ -1,5 +1,5 @@
 import React from "react";
-import ComponentMainPage from './components/ComponentMainPage';
+import ComponentMainPage from './hoc/ComponentMainPage';
 
 function App() {
     return (
