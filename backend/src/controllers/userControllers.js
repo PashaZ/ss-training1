@@ -1,4 +1,8 @@
 export function getUsers(req,res){
-    res.json({id:1, name:"Igor"})
+    res.json([
+    {name:"Apple", price: "10", id:"1"},
+    {name:"Orange", price: "20", id:"2"},
+    {name:"Banana", price: "30", id:"3"}
+])
 };
 
