@@ -8,8 +8,8 @@ fetchUsersBtn.addEventListener("click", () => {
 });
 
 function fetchUsers() {
-  return fetch("https://jsonplaceholder.typicode.com/users").then(
-    (response) => {
+  return fetch("https://jsonplaceholder.typicode.com/users")
+  .then((response) => {
       if (!response.ok) {
         throw new Error(response.status);
       }
