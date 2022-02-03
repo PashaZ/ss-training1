@@ -1,31 +1,31 @@
-const fetchUsersBtn = document.querySelector(".btn");
-const userList = document.querySelector(".user-list");
+// import React from "react";
+// import {Link} from 'react-router-dom';
 
-fetchUsersBtn.addEventListener("click", () => {
-  fetchUsers()
-    .then((users) => renderUserList(users))
-    .catch((error) => console.log(error));
-});
+// function fetchSubmit() {
+//     return fetch("http://localhost:8080/api/users")
+//     .then((response) => {
+//         if (!response.ok) {
+//           throw new Error(response.status);
+//         }
+//         return response.json();
+//       }
+//     )
+//   }
+// // 
+// fetchSubmit()
+// .then((productArray)=>Product(productArray))
+// .catch((error)=>console.log(error));
 
-function fetchUsers() {
-  return fetch("https://jsonplaceholder.typicode.com/users")
-  .then((response) => {
-      if (!response.ok) {
-        throw new Error(response.status);
-      }
-      return response.json();
-    }
-  );
-}
-
-function renderUserList(users) {
-  const markup = users
-    .map((user) => {
-      return `<li>
-          <p><b>Name</b>: ${user.name}</p>
-          </li>`;
-    })
-    .join("");
-  userList.innerHTML = markup;
-}
-
+// export default function Product(productArray) {
+   
+//            return (
+//         <ul>
+//             {productArray.map((product)=>
+//             <li key={product.id}>
+//                 <Link to={`/product/${product.id}`}>
+//                 {product.name}
+//                 </Link>
+//             </li>)}
+//         </ul>
+//     )     
+// }
