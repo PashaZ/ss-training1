@@ -5,7 +5,7 @@ export default function Product() {
   const [productArray, setProductArray] = useState([]);
   useEffect(() => {
     async function fetchSubmit() {
-      const productResponse = await (await fetch("http://localhost:8080/api/users")).json();
+      const productResponse = await (await fetch("http://localhost:8080/api/products")).json();
       setProductArray(productResponse);
     }
     fetchSubmit();

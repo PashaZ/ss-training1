@@ -7,8 +7,8 @@ export default function ProductDescription(){
 
 useEffect(()=>{
     async function fetchSubmit(){
-        const productResponse =await(await fetch("http://localhost:8080/api/users")).json();
-        const product = productResponse?.find(product=>productId===product?.id);
+                const product =await(await fetch(`http://localhost:8080/api/products/${productId}`)).json();
+        // const product = productResponse?.find(product=>productId===product?.id);
         setProduct(product);
         console.log("product", product);
         }
