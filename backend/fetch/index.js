@@ -11,13 +11,13 @@
 //       }
 //     )
 //   }
-// // 
+// //
 // fetchSubmit()
 // .then((productArray)=>Product(productArray))
 // .catch((error)=>console.log(error));
 
 // export default function Product(productArray) {
-   
+
 //            return (
 //         <ul>
 //             {productArray.map((product)=>
@@ -27,5 +27,5 @@
 //                 </Link>
 //             </li>)}
 //         </ul>
-//     )     
+//     )
 // }

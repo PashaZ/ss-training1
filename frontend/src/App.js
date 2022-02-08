@@ -1,5 +1,5 @@
-import React from "react";
-import ComponentMainPage from './hoc/ComponentMainPage';
+import React from 'react'
+import ComponentMainPage from './hoc/ComponentMainPage'
 
 function App() {
     return (
@@ -7,5 +7,5 @@ function App() {
             <ComponentMainPage />
         </div>
     )
-};
-export default App;
+}
+export default App
