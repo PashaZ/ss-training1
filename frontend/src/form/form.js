@@ -1,45 +1,60 @@
 import React, { useState } from 'react'
 
 export default function FormOfProduct() {
-    const [productName, setProductName] = useState('')
-    const [price, setPrice] = useState('')
-
+    const [product, setProduct] = useState({
+        productName: '',
+        price: '',
+    })
     const handleChange = (event) => {
         const { name, value } = event.target
-        switch (name) {
-            case 'productName':
-                setProductName(value)
-                break
+        setProduct({ ...product, [name]: value })
+    }
 
-            case 'price':
-                setPrice(value)
-                break
-            default:
-                return
+    const handleSubmit = (event) => {
+        if (product.productName === '' || !product.price) {
+            alert('Write all fields!')
+            return
+        } else event.preventDefault()
+        createNewProduct(product)
+    }
+
+    const createNewProduct = async (product) => {
+        const url = 'http://localhost:8080/api/' //example url
+        const fetchData = {
+            method: 'POST',
+            body: product,
+            headers: new Headers(),
+        }
+        try {
+            const request = async () => {
+                const res = await fetch(url, fetchData)
+                const data = await res.json()
+                if (!res.ok) {
+                    throw new Error(data)
+                }
+            }
+            if (product) {
+                request()
+            }
+        } catch (error) {
+            return error
         }
     }
+
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <label>
                 <span>Name of product</span>
                 <input
                     type="text"
                     name="productName"
                     onChange={handleChange}
-                    value={productName}
                 ></input>
             </label>
-
             <label>
                 <span>Price of product</span>
-                <input
-                    name="price"
-                    type="text"
-                    value={price}
-                    onChange={handleChange}
-                ></input>
+                <input name="price" type="text" onChange={handleChange}></input>
             </label>
-
             <button type="submit">Add product</button>
         </form>
     )
