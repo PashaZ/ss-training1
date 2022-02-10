@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 export default function FormOfProduct() {
     const [product, setProduct] = useState({
-        productName: '',
+        name: '',
         price: '',
     })
     const handleChange = (event) => {
@@ -11,32 +11,35 @@ export default function FormOfProduct() {
     }
 
     const handleSubmit = (event) => {
-        if (product.productName === '' || !product.price) {
+        if (product.name === '' || !product.price) {
             alert('Write all fields!')
-            return
-        } else event.preventDefault()
-        createNewProduct(product)
+       } else
+       { event.preventDefault();
+        createNewProduct(product);
+    console.log("product", product);
+}
     }
 
     const createNewProduct = async (product) => {
-        const url = 'http://localhost:8080/api/' //example url
+        const url = 'http://localhost:8080/api/products/form' 
         const fetchData = {
             method: 'POST',
             body: product,
             headers: new Headers(),
+        };
+        const request = async () => {
+            const res = await fetch(url, fetchData);
+            const data = await res.json();
+            if (!res.ok) {
+                throw new Error(data)
+            }
         }
         try {
-            const request = async () => {
-                const res = await fetch(url, fetchData)
-                const data = await res.json()
-                if (!res.ok) {
-                    throw new Error(data)
-                }
-            }
             if (product) {
                 request()
             }
-        } catch (error) {
+        } 
+        catch (error) {
             return error
         }
     }
@@ -47,7 +50,7 @@ export default function FormOfProduct() {
                 <span>Name of product</span>
                 <input
                     type="text"
-                    name="productName"
+                    name="name"
                     onChange={handleChange}
                 ></input>
             </label>
