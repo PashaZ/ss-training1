@@ -5,42 +5,44 @@ export default function FormOfProduct() {
         name: '',
         price: '',
     })
+
     const handleChange = (event) => {
         const { name, value } = event.target
         setProduct({ ...product, [name]: value })
     }
-
     const handleSubmit = (event) => {
         if (product.name === '' || !product.price) {
             alert('Write all fields!')
-       } else
-       { event.preventDefault();
-        createNewProduct(product);
-    console.log("product", product);
-}
+        } else {
+            event.preventDefault()
+            createNewProduct(product)
+        }
     }
 
-    const createNewProduct = async (product) => {
-        const url = 'http://localhost:8080/api/products/form' 
+    const createNewProduct = async () => {
+        const url = 'http://localhost:8080/api/products/form'
         const fetchData = {
             method: 'POST',
-            body: product,
-            headers: new Headers(),
-        };
-        const request = async () => {
-            const res = await fetch(url, fetchData);
-            const data = await res.json();
-            if (!res.ok) {
-                throw new Error(data)
-            }
+            body: JSON.stringify(product),
+            headers: {
+                'Content-Type': 'application/json',
+            },
         }
+        const request = async () => {
+            const res = await fetch(url, fetchData)
+            const data = await res.json()
+            if (!res.ok) {
+                throw new Error(data.message || 'Something was wrong')
+            }
+            return data
+        }
+
         try {
             if (product) {
                 request()
             }
-        } 
-        catch (error) {
-            return error
+        } catch (error) {
+            return error.message
         }
     }
 
@@ -48,11 +50,7 @@ export default function FormOfProduct() {
         <form onSubmit={handleSubmit}>
             <label>
                 <span>Name of product</span>
-                <input
-                    type="text"
-                    name="name"
-                    onChange={handleChange}
-                ></input>
+                <input type="text" name="name" onChange={handleChange}></input>
             </label>
             <label>
                 <span>Price of product</span>
