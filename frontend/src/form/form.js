@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 
 export default function FormOfProduct() {
     const [product, setProduct] = useState({
         name: '',
         price: '',
-    })
-
+    });
     const handleChange = (event) => {
         const { name, value } = event.target
         setProduct({ ...product, [name]: value })
@@ -13,44 +12,50 @@ export default function FormOfProduct() {
     const handleSubmit = (event) => {
         if (product.name === '' || !product.price) {
             alert('Write all fields!')
-        } else {
-            event.preventDefault()
-            createNewProduct(product)
-        }
-    }
+       } else
+       {
+            event.preventDefault();
+        createNewProduct(product);
+}
+    };
 
     const createNewProduct = async () => {
-        const url = 'http://localhost:8080/api/products/form'
+        const url = 'http://localhost:8080/api/products/form' ;
         const fetchData = {
             method: 'POST',
             body: JSON.stringify(product),
             headers: {
-                'Content-Type': 'application/json',
-            },
-        }
+                'Content-Type': 'application/json'
+              },
+        };
         const request = async () => {
-            const res = await fetch(url, fetchData)
-            const data = await res.json()
+            const res = await fetch(url, fetchData);
+            const data = await res.json();
             if (!res.ok) {
-                throw new Error(data.message || 'Something was wrong')
+                throw new Error(data.message || "Something was wrong")
             }
-            return data
-        }
+              return alert(data)
+            };
 
         try {
             if (product) {
-                request()
+                request();
             }
-        } catch (error) {
-            return error.message
+        } 
+        catch (error) {
+             return error.message
         }
-    }
+    };
 
     return (
         <form onSubmit={handleSubmit}>
             <label>
                 <span>Name of product</span>
-                <input type="text" name="name" onChange={handleChange}></input>
+                <input
+                    type="text"
+                    name="name"
+                    onChange={handleChange}
+                ></input>
             </label>
             <label>
                 <span>Price of product</span>
