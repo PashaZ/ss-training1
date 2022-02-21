@@ -1,5 +1,6 @@
-import {productArray} from "../mocks/productArray";
+// import { productArray } from "../mocks/productArray"
 
-export function getProducts(req, res) {
-        res.json(productArray)
-}
+// export function productController(req, res) {
+//     const getPro = productArray.find((product) => product.id === req.params.id)
+//     res.json(getPro)
+// }

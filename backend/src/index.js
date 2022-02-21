@@ -1,16 +1,55 @@
-import express from 'express'
-import router from './routes/productRoute'
-import cors from 'cors'
-import descRoute from './routes/descRoute'
-import addProductRoute from './routes/addProductRoute'
-
-const app = express()
+require('dotenv').config()
+// if (process.env.NODE_ENV !== 'test' && dotenv.error) throw dotenv.error
+const express = require('express')
+const sequelize = require('./db')
+// const models = require('./models/models')
+const cors = require('cors')
 const PORT = process.env.PORT || 8080
+const app = express()
+const router = require('./routes/index') 
 
 app.use(cors('*'))
+app.use(express.json({ extended: true }))
 
 app.use('/api', router)
-app.use('/api', descRoute)
-app.use('/api', addProductRoute)
+// app.get('/api', (req, res)=>{
+//     res.status(200).json({message:"WORKING !!!"})
+// })
+const start = async () => {
+    try {
+        await sequelize.authenticate()
+        await sequelize.sync()
+        app.listen(PORT, console.log(`listening on port ${PORT} !!!`))
+    } catch (e) {
+        console.log(e)
+    }
+}
+start()
 
-app.listen(PORT, console.log(`listening on port ${PORT}`))
+
+
+
+
+
+
+
+
+
+// ---------------------------------------------------------------
+// import express from 'express'
+// import router from './routes/productsRoute'
+// import cors from 'cors'
+// import productRoute from './routes/productRoute'
+// import createProductRoute from './routes/createProductRoute'
+// //
+
+// const app = express()
+// const PORT = process.env.PORT || 8080
+
+// app.use(cors('*'))
+
+// app.use('/api', router)
+// app.use('/api', productRoute)
+// app.use('/api', createProductRoute)
+
+// app.listen(PORT, console.log(`listening on port ${PORT}`))
