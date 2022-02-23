@@ -5,10 +5,13 @@ import React, { useState} from 'react';
 export default function FormOfProduct() {
     const [product, setProduct] = useState({
         name: '',
-        price: '',
+        price: ''
     });
+
+
+//////////////////////////////////////
     const handleChange = (event) => {
-        const { name, value } = event.target
+        const { name, value} = event.target
         setProduct({ ...product, [name]: value })
     }
     const handleSubmit = (event) => {
@@ -30,7 +33,7 @@ export default function FormOfProduct() {
                 'Content-Type': 'application/json'
               },
         };
-        const request = async () => {
+            const request = async () => {
             const res = await fetch(url, fetchData);
             const data = await res.json();
             if (!res.ok) {
@@ -63,6 +66,14 @@ export default function FormOfProduct() {
                 <span>Price of product</span>
                 <input name="price" type="text" onChange={handleChange}></input>
             </label>
+            {/* ///////////////////// */}
+            {/* <label> 
+                <br/>
+                <input  type="file" 
+                // name="img"
+                onChange={selectFile}></input>
+            </label> */}
+           {/* ///////////////////// */}
             <button type="submit">Add product</button>
         </form>
     )

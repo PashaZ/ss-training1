@@ -1,19 +1,35 @@
 const { json } = require('../db')
 const { Product } = require('../models/models')
-
+const uuid = require('uuid')
+const path = require('path')
 class ProductsController {
     async create(req, res) {
         try {
-            const { name, price, id } = req.body
-            const createProduct = await Product.create({ name, price, id })
-            return res.json(createProduct)
-        } catch (e) {
-            console.log(e)
-        }
+         if(!req){
+         return res.status(400).json({
+         message: "Uncorrect data in field"
+    })
+}
+else {
+            const { name, price, id} = await req.body
+            ////////////////////////////
+            const {img} = await req.files
+            let fileName = uuid.v4()+".jpg" 
+            // console.log("fileName --", fileName);
+            img.mv(path.resolve(__dirname, '..', 'static', fileName))
+            // console.log("this is img-", img);
+            ////////////////////////////
+            const createProduct = await Product.create({ name, price, id})
+            return res.json(`Product-${name} added, thank you!`)
+            // return res.json(createProduct)
+        }}
+         catch (e) {
+                res.status(500),json({message: "Something was wrong"})
+                }
     }
 
     async getAll(req, res) {
-        const getProducts = await Product.findAll()
+        const getProducts = await Product.findAll() 
         return res.json(getProducts)
     }
     async getOne(req, res) {

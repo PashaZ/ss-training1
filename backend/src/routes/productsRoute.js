@@ -19,7 +19,6 @@ module.exports = router
 
 
 
-
 // import express from 'express'
 // const router = express.Router()
 // import { getProducts } from '../controllers/productsController'
