@@ -14,12 +14,12 @@ else {
             const { name, price, id} = await req.body
             ////////////////////////////
             const {img} = await req.files
-            let fileName = uuid.v4()+".jpg" 
+            let fileName = uuid.v4()+".jpg"  
             // console.log("fileName --", fileName);
             img.mv(path.resolve(__dirname, '..', 'static', fileName))
-            // console.log("this is img-", img);
+            // console.log("this is img--", img);
             ////////////////////////////
-            const createProduct = await Product.create({ name, price, id})
+            const createProduct = await Product.create({ name, price, id, img: fileName})
             return res.json(`Product-${name} added, thank you!`)
             // return res.json(createProduct)
         }}

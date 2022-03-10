@@ -12,14 +12,14 @@ export default function ProductDescription() {
             ).json()
             // const product = productResponse?.find(product=>productId===product?.id);
             setProduct(product)
-            console.log('product', product)
+            console.log('product:', product)
         }
         fetchSubmit()
     }, [])
     return (
         <h3 key={product.id}>
             {' '}
-            {`Product ${product.name} price: ${product.price}`}
+            {`Product: ${product.name} price: ${product.price}`}
         </h3>
     )
 }

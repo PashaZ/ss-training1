@@ -7,6 +7,7 @@ export default function FormOfProduct() {
         name: '',
         price: ''
     });
+////////////////////////////////////
 
 
 //////////////////////////////////////
@@ -70,7 +71,7 @@ export default function FormOfProduct() {
             {/* <label> 
                 <br/>
                 <input  type="file" 
-                // name="img"
+                name="img"
                 onChange={selectFile}></input>
             </label> */}
            {/* ///////////////////// */}
@@ -78,3 +79,7 @@ export default function FormOfProduct() {
         </form>
     )
 }
+
+
+
+
