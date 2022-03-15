@@ -9,16 +9,6 @@ router.get('/products/:id', ProductsController.getOne)
 
 module.exports = router
 
-
-
-
-
-
-
-
-
-
-
 // import express from 'express'
 // const router = express.Router()
 // import { getProducts } from '../controllers/productsController'

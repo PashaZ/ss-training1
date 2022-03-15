@@ -1,85 +1,68 @@
-import React, { useState} from 'react';
-// import { v4 as uuidv4 } from 'uuid';
-// import axios from 'axios';
+import React, { useState } from 'react'
 
 export default function FormOfProduct() {
-    const [product, setProduct] = useState({
-        name: '',
-        price: ''
-    });
-////////////////////////////////////
+    const [name, setName] = useState('')
+    const [price, setPrice] = useState('')
+    const [img, setFile] = useState(null)
 
-
-//////////////////////////////////////
-    const handleChange = (event) => {
-        const { name, value} = event.target
-        setProduct({ ...product, [name]: value })
-    }
     const handleSubmit = (event) => {
-        if (product.name === '' || !product.price) {
-            alert('Write all fields!')
-       } else
-       {
-            event.preventDefault();
-        createNewProduct(product);
-}
-    };
+        event.preventDefault()
+        createNewProduct()
+    }
 
-    const createNewProduct = async () => {
-        const url = 'http://localhost:8080/api/products/form' ;
+    const selectFile = (event) => {
+        setFile(event.target.files[0])
+    }
+    const nameChange = (event) => {
+        setName(event.target.value)
+    }
+    const priceChange = (event) => {
+        setPrice(event.target.value)
+    }
+    const createNewProduct = () => {
+        const product = new FormData()
+        product.append('name', name)
+        product.append('price', price)
+        product.append('img', img)
+
+        const url = 'http://localhost:8080/api/products/form'
         const fetchData = {
             method: 'POST',
-            body: JSON.stringify(product),
-            headers: {
-                'Content-Type': 'application/json'
-              },
-        };
-            const request = async () => {
-            const res = await fetch(url, fetchData);
-            const data = await res.json();
-            if (!res.ok) {
-                throw new Error(data.message || "Something was wrong")
-            }
-              return alert(data)
-            };
-
-        try {
-            if (product) {
-                request();
-            }
-        } 
-        catch (error) {
-             return error.message
+            body: product,
+            'Content-Type': 'multipart/form-data',
         }
-    };
 
+        const request = async () => {
+            const res = await fetch(url, fetchData)
+            const data = await res.json()
+            if (!res.ok) {
+                throw new Error(data.message || 'Something was wrong')
+            }
+            return alert(data)
+        }
+        try {
+            if (fetchData) {
+                request()
+            }
+        } catch (error) {
+            return error.message
+        }
+    }
     return (
         <form onSubmit={handleSubmit}>
             <label>
                 <span>Name of product</span>
-                <input
-                    type="text"
-                    name="name"
-                    onChange={handleChange}
-                ></input>
+                <input type="text" value={name} onChange={nameChange}></input>
             </label>
             <label>
                 <span>Price of product</span>
-                <input name="price" type="text" onChange={handleChange}></input>
+                <input value={price} type="text" onChange={priceChange}></input>
             </label>
-            {/* ///////////////////// */}
-            {/* <label> 
-                <br/>
-                <input  type="file" 
-                name="img"
-                onChange={selectFile}></input>
-            </label> */}
-           {/* ///////////////////// */}
+            <label>
+                <br />
+                <input type="file" onChange={selectFile}></input>
+            </label>
             <button type="submit">Add product</button>
         </form>
     )
 }
-
-
-
-

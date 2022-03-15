@@ -10,8 +10,6 @@ module.exports = new Sequelize(
         port: '5432',
     }
 
-
-    
     // process.env.DB_NAME,
     // process.env.DB_USER ,
     // process.env.DB_PASSWORD ,
