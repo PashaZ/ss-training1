@@ -1,16 +1,29 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+// import { Link } from "react-router-dom";
+import Logo from "../../pages/Logo";
+import { AppBar, Toolbar, Container, MenuItem, Link } from "@mui/material";
 
 export default function Nav({ LinkArray }) {
-    return (
-        <nav>
-            <ul>
-                {LinkArray.map((link) => (
-                    <li key={link.id}>
-                        <Link to={link.path}>{link.label}</Link>
-                    </li>
-                ))}
-            </ul>
-        </nav>
-    )
+  return (
+    <AppBar position="static">
+      <Container>
+        <Toolbar disableGutters>
+          <Logo />
+          {LinkArray?.map((link) => (
+            <MenuItem key={link.id}>
+              <Link
+                marginX={3}
+                // rel="noreferrer"
+                href={link.path}
+                color="inherit"
+                underline="none"
+              >
+                {link.label}
+              </Link>
+            </MenuItem>
+          ))}
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
 }

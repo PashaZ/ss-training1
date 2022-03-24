@@ -20,6 +20,7 @@ class ProductsController {
                     id,
                     img: fileName,
                 })
+                // return console.log("req.body--", req.body.name)
                 return res.json(`Product-${name} added, thank you!`)
             }
         } catch (e) {
