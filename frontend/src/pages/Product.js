@@ -17,7 +17,7 @@ export default function ProductDescription() {
   return (
     <Card
       sx={{
-        color: "grey",
+        // color: "grey",
         textAlign: "center",
         display: "flex",
         flexWrap: "wrap",

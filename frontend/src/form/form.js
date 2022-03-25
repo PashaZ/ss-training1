@@ -1,12 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import useFetch from "../hooks/useFetch";
 
 export default function FormOfProduct() {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    return createNewProduct(data);
+    return CreateNewProduct(data);
   };
-  const createNewProduct = (data) => {
+  const CreateNewProduct = (data) => {
     const { name, price, img } = data;
     const product = new FormData();
     product.append("name", name);
@@ -19,22 +20,7 @@ export default function FormOfProduct() {
       body: product,
       "Content-Type": "multipart/form-data",
     };
-    const request = async () => {
-      const res = await fetch(url, fetchData);
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.message || "Something was wrong");
-      } else {
-        return alert(data);
-      }
-    };
-    try {
-      if (fetchData) {
-        request();
-      }
-    } catch (error) {
-      return error.message;
-    }
+    useFetch(url, fetchData);
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -54,6 +40,45 @@ export default function FormOfProduct() {
     </form>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // import React, { useState } from 'react'
 
