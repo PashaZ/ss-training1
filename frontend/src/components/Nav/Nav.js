@@ -13,7 +13,6 @@ export default function Nav({ LinkArray }) {
             <MenuItem key={link.id}>
               <Link
                 marginX={3}
-                // rel="noreferrer"
                 href={link.path}
                 color="inherit"
                 underline="none"

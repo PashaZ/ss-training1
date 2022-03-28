@@ -6,8 +6,7 @@ import Product from "../pages/Product";
 import Nav from "../components/Nav/Nav";
 import NotFound from "../pages/notFound";
 import LinkArray from "../mocks/LinkArray";
-import ProductDescription from "../pages/ProductDescription";
-import FormOfProduct from "../form/form";
+import Products from "../pages/ProductDescription";
 
 export default function ComponentMainPage() {
   return (
@@ -22,12 +21,10 @@ export default function ComponentMainPage() {
 
           <Route exact path="/product" element={<Product />} />
 
-          <Route path="/product/:productId" element={<ProductDescription />} />
+          <Route path="/product/:productId" element={<Products />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
-
-        <FormOfProduct />
       </div>
     </Router>
   );
