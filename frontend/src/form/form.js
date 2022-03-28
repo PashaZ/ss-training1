@@ -138,14 +138,3 @@ export default function FormOfProduct() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
