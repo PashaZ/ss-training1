@@ -37,7 +37,7 @@ export default function ProductDescription() {
             }}
           >
             {product.name} always fresh in our shop!
-          </Typography>
+          </Typography> 
           <CardMedia
             component="img"
             image={`http://localhost:8080/${product.img}`}

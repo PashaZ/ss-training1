@@ -6,23 +6,18 @@ import { AppBar, Toolbar, Container, MenuItem, Link } from "@mui/material";
 export default function Nav({ LinkArray }) {
   return (
     <AppBar position="static">
-      <Container>
-        <Toolbar disableGutters>
+      <Toolbar sx={{ mr: "33%", mb: "-3px" }}>
+        <Container>
           <Logo />
-          {LinkArray?.map((link) => (
-            <MenuItem key={link.id}>
-              <Link
-                marginX={3}
-                href={link.path}
-                color="inherit"
-                underline="none"
-              >
-                {link.label}
-              </Link>
-            </MenuItem>
-          ))}
-        </Toolbar>
-      </Container>
+        </Container>
+        {LinkArray?.map((link) => (
+          <MenuItem key={link.id}>
+            <Link marginX={5} href={link.path} color="inherit" underline="none">
+              {link.label}
+            </Link>
+          </MenuItem>
+        ))}
+      </Toolbar>
     </AppBar>
   );
 }

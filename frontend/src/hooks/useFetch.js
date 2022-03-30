@@ -13,14 +13,14 @@
 //         return setData(data);
 //       }
 //     };
-//     try {
-//       if (url) {
-//         request();
-//       }
-//     } catch (error) {
-//       return error;
-//     }
-//   }, [url]);
+// //     try {
+// //       if (url) {
+// //         request();
+// //       }
+// //     } catch (error) {
+// //       return error;
+// //     }
+// //   }, [url]);
 //   return { data };
 // };
 // export default useFetch;
