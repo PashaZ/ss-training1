@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import {
-  CardHeader,
   Grid,
   Link,
   Card,
   CardContent,
   CardMedia,
   Container,
+  Button,
 } from "@mui/material";
-import IconButton from "@mui/icons-material/Menu";
-// import MoreIcon from '@mui/icons-material/MoreVert';
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+// import IconButton from '@mui/material/IconButton';
+// import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FormOfProduct from "../form/form";
+import StatusButton from "../components/statusButton/statusButton";
 
 export default function Product() {
   const [productArray, setProductArray] = useState([]);
@@ -44,13 +44,9 @@ export default function Product() {
                 sx={{ border: "3px", color: "inherit" }}
                 key={product.id}
               >
-                <CardHeader
-                  action={
-                    <IconButton aria-label="settings">
-                      <MoreVertIcon />
-                    </IconButton> 
-                  }
-                />
+                {/* -------------------------- */}
+                <StatusButton ProductStatus={product.statusValue} />
+                {/* ---------------------------------------------------------------- */}
                 <CardMedia
                   component="img"
                   sx={{ height: 70, width: 70 }}

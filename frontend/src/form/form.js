@@ -34,11 +34,13 @@ export default function FormOfProduct() {
     return CreateNewProduct(data);
   };
   const CreateNewProduct = (data) => {
+    const statusValue = "active";
     const { name, price, img } = data;
     const product = new FormData();
     product.append("name", name);
     product.append("price", price);
     product.append("img", img[0]);
+    product.append("statusValue", statusValue);
 
     const url = "http://localhost:8080/api/products/form";
     const fetchData = {
@@ -129,31 +131,6 @@ export default function FormOfProduct() {
     </Container>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState } from 'react'
 
