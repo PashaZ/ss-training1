@@ -4,13 +4,39 @@ import { Container, Menu, MenuItem } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-export default function StatusButton({ ProductStatus }) {
-  const changedStatus = () => {
-    if ({ ProductStatus }.ProductStatus === "active") return "archive";
-    else {
-      return "active";
+export default function MenuButton({ Product }) {
+  const status = Product.statusValue === "active" ? "archive" : "active";
+
+  const id = Product.id;
+  const changedStatus = async ({ Product }) => {
+    const product = {
+      statusValue: status,
+    };
+    const url = `http://localhost:8080/api/products/statusUpdate/${id}`;
+    const fetchData = {
+      method: "PATCH",
+      body: JSON.stringify(product),
+      headers: { "Content-Type": "application/json" },
+    };
+    const request = async () => {
+      const res = await fetch(url, fetchData);
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.message || "Something was wrong");
+      }
+      return alert(data);
+    };
+
+    try {
+      if ({ Product }) {
+        request();
+      }
+    } catch (error) {
+      return error.message;
     }
+    setAnchorEl(null);
   };
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -44,7 +70,7 @@ export default function StatusButton({ ProductStatus }) {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>{changedStatus()}</MenuItem>
+        <MenuItem onClick={changedStatus}>{status}</MenuItem>
       </Menu>
     </Container>
   );
