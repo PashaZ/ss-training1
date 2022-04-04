@@ -132,6 +132,40 @@ export default function FormOfProduct() {
   );
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import React, { useState } from 'react'
 
 // export default function FormOfProduct() {

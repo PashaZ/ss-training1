@@ -6,12 +6,9 @@ import {
   CardContent,
   CardMedia,
   Container,
-  Button,
 } from "@mui/material";
-// import IconButton from '@mui/material/IconButton';
-// import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FormOfProduct from "../form/form";
-import StatusButton from "../components/statusButton/statusButton";
+import MenuButton from "../components/menuButton/MenuButton";
 
 export default function Product() {
   const [productArray, setProductArray] = useState([]);
@@ -44,9 +41,7 @@ export default function Product() {
                 sx={{ border: "3px", color: "inherit" }}
                 key={product.id}
               >
-                {/* -------------------------- */}
-                <StatusButton ProductStatus={product.statusValue} />
-                {/* ---------------------------------------------------------------- */}
+                <MenuButton Product={product} />
                 <CardMedia
                   component="img"
                   sx={{ height: 70, width: 70 }}

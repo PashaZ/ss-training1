@@ -21,7 +21,6 @@ class ProductsController {
           img: fileName,
           statusValue,
         });
-        // return console.log("req.body--", req.body.name)
         return res.json(`Product-${name} added, thank you!`);
       }
     } catch (e) {
@@ -39,6 +38,17 @@ class ProductsController {
     });
     return res.json(getProduct);
   }
+  // ------------------------------------------------
+  async update(req, res) {
+    const { id } = req.params;
+    console.log("req.body status--", req.body);
+    console.log("id--", id);
+    Product.update(req.body, {
+      where: { id },
+    });
+    return res.json(`status changed!`);
+  }
+  // -------------------------------------------------
   //     async check(req, res){
   // const query = req.query
   // res.json(query)
