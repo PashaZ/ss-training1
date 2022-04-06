@@ -9,22 +9,33 @@ import {
 } from "@mui/material";
 import FormOfProduct from "../form/form";
 import MenuButton from "../components/menuButton/MenuButton";
+import SelectStatus from "../components/selectStatus/SelectStatus";
 
 export default function Product() {
   const [productArray, setProductArray] = useState([]);
+
   useEffect(() => {
     async function fetchSubmit() {
       const productResponse = await (
-        await fetch("http://localhost:8080/api/products")
+        await fetch("http://localhost:8080/api/products/")
       ).json();
       setProductArray(productResponse);
     }
     fetchSubmit();
   }, []);
 
+  const handleStatusSelect = async (value) => {
+    const productResponse = await (
+      await fetch(`http://localhost:8080/api/products/?statusValue=${value}`)
+    ).json();
+    setProductArray(productResponse);
+  };
   return (
     <Container>
       <FormOfProduct />
+
+      <SelectStatus onSelect={handleStatusSelect} />
+
       <Grid container spacing={3}>
         {productArray?.map((product) => (
           <Grid key={product.id} item xs={4} md={2}>

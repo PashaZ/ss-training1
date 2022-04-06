@@ -28,7 +28,14 @@ class ProductsController {
     }
   }
   async getAll(req, res) {
-    const getProducts = await Product.findAll();
+    const { statusValue } = req.query;
+    let getProducts;
+    if (!statusValue) {
+      getProducts = await Product.findAll({ where: { statusValue: "active" } });
+    }
+    if (statusValue) {
+      getProducts = await Product.findAll({ where: { statusValue } });
+    }
     return res.json(getProducts);
   }
   async getOne(req, res) {
@@ -38,11 +45,8 @@ class ProductsController {
     });
     return res.json(getProduct);
   }
-  // ------------------------------------------------
   async update(req, res) {
     const { id } = req.params;
-    console.log("req.body status--", req.body);
-    console.log("id--", id);
     Product.update(req.body, {
       where: { id },
     });

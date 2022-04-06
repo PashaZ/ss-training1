@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { useState } from "react";
 import { Container, Menu, MenuItem } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -7,8 +7,8 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 export default function MenuButton({ Product }) {
   const status = Product.statusValue === "active" ? "archive" : "active";
 
-  const id = Product.id;
-  const changedStatus = async ({ Product }) => {
+  const { id } = Product;
+  const changedStatus = async () => {
     const product = {
       statusValue: status,
     };
@@ -28,7 +28,7 @@ export default function MenuButton({ Product }) {
     };
 
     try {
-      if ({ Product }) {
+      if (product) {
         request();
       }
     } catch (error) {

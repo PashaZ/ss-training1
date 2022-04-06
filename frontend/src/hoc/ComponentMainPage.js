@@ -19,7 +19,7 @@ export default function ComponentMainPage() {
 
           <Route path="/about" element={<About />} />
 
-          <Route exact path="/product" element={<Product />} />
+          <Route exact path="/products" element={<Product />} />
 
           <Route path="/product/:productId" element={<Products />} />
 
