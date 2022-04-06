@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+
 import {
   Typography,
   TextField,
@@ -71,6 +72,7 @@ export default function FormOfProduct() {
         <Typography variant="h6" sx={{ ml: "40%" }}>
           List of all products
         </Typography>
+
         <Button
           sx={{ width: "180px", ml: "25%" }}
           type="submit"
@@ -131,40 +133,6 @@ export default function FormOfProduct() {
     </Container>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState } from 'react'
 
