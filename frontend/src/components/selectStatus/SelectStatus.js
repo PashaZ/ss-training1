@@ -10,13 +10,13 @@ export default function SelectStatus({ onSelect }) {
   const [status, setStatus] = useState("");
 
   const handleChange = (event) => {
-    onSelect(event.target.value);
-  };
-
-  const eventClick = (event) => {
     const { value } = event.target;
     onSelect(value);
     setStatus(value);
+  };
+  const eventClick = (event) => {
+    const { value } = event.target;
+    onSelect(value);
   };
 
   return (
