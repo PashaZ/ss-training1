@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../pages/Logo";
+import Logo from "../logo/Logo";
 import { AppBar, Toolbar, Container, MenuItem, Link } from "@mui/material";
 
 export default function Nav({ LinkArray }) {

@@ -2,11 +2,11 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import About from "../pages/About";
-import Product from "../pages/Product";
+import Products from "../pages/Products";
 import Nav from "../components/Nav/Nav";
-import NotFound from "../pages/notFound";
+import NotFound from "../pages/NotFound";
 import LinkArray from "../mocks/LinkArray";
-import Products from "../pages/ProductDescription";
+import Product from "../pages/Product";
 
 export default function ComponentMainPage() {
   return (
@@ -19,9 +19,9 @@ export default function ComponentMainPage() {
 
           <Route path="/about" element={<About />} />
 
-          <Route exact path="/products" element={<Product />} />
+          <Route exact path="/products" element={<Products />} />
 
-          <Route path="/product/:productId" element={<Products />} />
+          <Route path="/product/:productId" element={<Product />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

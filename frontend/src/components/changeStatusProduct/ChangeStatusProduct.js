@@ -1,14 +1,13 @@
-// import React from "react";
 import { useState } from "react";
 import { Container, Menu, MenuItem } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-export default function MenuButton({ Product }) {
+export default function ChangeStatusProduct({ Product }) {
   const status = Product.statusValue === "active" ? "archive" : "active";
 
   const { id } = Product;
-  const changedStatus = async () => {
+  const changeStatus = async () => {
     const product = {
       statusValue: status,
     };
@@ -19,9 +18,9 @@ export default function MenuButton({ Product }) {
       headers: { "Content-Type": "application/json" },
     };
     const request = async () => {
-      const res = await fetch(url, fetchData);
-      const data = await res.json();
-      if (!res.ok) {
+      const response = await fetch(url, fetchData);
+      const data = await response.json();
+      if (!response.ok) {
         throw new Error(data.message || "Something was wrong");
       }
       return alert(data);
@@ -70,7 +69,7 @@ export default function MenuButton({ Product }) {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={changedStatus}>{status}</MenuItem>
+        <MenuItem onClick={changeStatus}>{status}</MenuItem>
       </Menu>
     </Container>
   );
