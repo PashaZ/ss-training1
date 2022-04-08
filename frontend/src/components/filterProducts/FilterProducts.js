@@ -1,22 +1,20 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { ProductContext } from "../../productsContext";
 
-export default function SelectStatus({ onSelect }) {
+export default function FilterProducts() {
+  const { getFilterProducts } = useContext(ProductContext);
   const [status, setStatus] = useState("");
 
-  const handleChange = (event) => {
+  const choseStatus = (event) => {
     const { value } = event.target;
-    onSelect(value);
+    getFilterProducts(value);
     setStatus(value);
-  };
-  const eventClick = (event) => {
-    const { value } = event.target;
-    onSelect(value);
   };
 
   return (
@@ -28,14 +26,10 @@ export default function SelectStatus({ onSelect }) {
           id="demo-simple-select"
           value={status}
           label="Status"
-          onChange={handleChange}
+          onChange={choseStatus}
         >
-          <MenuItem value="active" onClick={eventClick}>
-            Active
-          </MenuItem>
-          <MenuItem value="archive" onClick={eventClick}>
-            Archive
-          </MenuItem>
+          <MenuItem value="active">Active</MenuItem>
+          <MenuItem value="archive">Archive</MenuItem>
         </Select>
       </FormControl>
     </Box>

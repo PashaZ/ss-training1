@@ -1,77 +1,50 @@
 import React, { useEffect, useState } from "react";
-import {
-  Grid,
-  Link,
-  Card,
-  CardContent,
-  CardMedia,
-  Container,
-} from "@mui/material";
-import FormOfProduct from "../form/form";
-import MenuButton from "../components/menuButton/MenuButton";
-import SelectStatus from "../components/selectStatus/SelectStatus";
+import { useParams } from "react-router-dom";
+import { Typography, Card, CardContent, CardMedia } from "@mui/material";
 
 export default function Product() {
-  const [productArray, setProductArray] = useState([]);
+  const [product, setProduct] = useState({});
+  const { productId } = useParams();
 
   useEffect(() => {
     async function fetchSubmit() {
-      const productResponse = await (
-        await fetch("http://localhost:8080/api/products/")
+      const product = await (
+        await fetch(`http://localhost:8080/api/products/${productId}`)
       ).json();
-      setProductArray(productResponse);
+      setProduct(product);
     }
     fetchSubmit();
   }, []);
-
-  const handleStatusSelect = async (value) => {
-    const productResponse = await (
-      await fetch(`http://localhost:8080/api/products/?statusValue=${value}`)
-    ).json();
-    setProductArray(productResponse);
-  };
   return (
-    <Container>
-      <FormOfProduct />
-
-      <SelectStatus onSelect={handleStatusSelect} />
-
-      <Grid container spacing={3}>
-        {productArray?.map((product) => (
-          <Grid key={product.id} item xs={4} md={2}>
-            <Card
-              key={product.id}
-              sx={{
-                border: "3px",
-                height: "100%",
-                gap: "30px",
-              }}
-            >
-              <CardContent
-                align="center"
-                sx={{ border: "3px", color: "inherit" }}
-                key={product.id}
-              >
-                <MenuButton Product={product} />
-                <CardMedia
-                  component="img"
-                  sx={{ height: 70, width: 70 }}
-                  image={`http://localhost:8080/${product.img}`}
-                  alt="image of product"
-                />
-                <Link
-                  href={`/product/${product.id}`}
-                  color="inherit"
-                  underline="none"
-                  gutterBottom
-                >
-                  {product.name}
-                </Link>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+    <div key={product.id}>
+      <Card
+        sx={{
+          textAlign: "center",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "30px",
+          "& > :not(style)": {
+            m: 1,
+            width: "100%",
+          },
+        }}
+      >
+        <CardContent key={product.id}>
+          <Typography
+            variant="h6"
+            sx={{
+              display: { md: "flex", margin: "10px", textAlign: "center" },
+            }}
+          >
+            {product.name} always fresh in our shop!
+          </Typography>
+          <CardMedia
+            component="img"
+            image={`http://localhost:8080/${product.img}`}
+            alt="image of product"
+          />
+        </CardContent>
+      </Card>
+    </div>
   );
 }
