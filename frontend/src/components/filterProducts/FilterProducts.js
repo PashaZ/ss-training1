@@ -6,14 +6,17 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { ProductContext } from "../../productsContext";
+import { getFilterProducts } from "../../api";
 
 export default function FilterProducts() {
-  const { getFilterProducts } = useContext(ProductContext);
+  const { filterProductsAction } = useContext(ProductContext);
   const [status, setStatus] = useState("");
 
   const choseStatus = (event) => {
     const { value } = event.target;
-    getFilterProducts(value);
+    getFilterProducts(value).then((filterProducts) => {
+      filterProductsAction(filterProducts);
+    });
     setStatus(value);
   };
 
