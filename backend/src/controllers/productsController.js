@@ -38,6 +38,8 @@ class ProductsController {
     }
     return res.json(getProducts);
   }
+  // ------------------------------------------------------------------------------------
+
   async getOne(req, res) {
     const { id } = req.params;
     const getProduct = await Product.findOne({
@@ -45,6 +47,8 @@ class ProductsController {
     });
     return res.json(getProduct);
   }
+
+  // ---------------------------------------------------------------------------------------
   async update(req, res) {
     const { id } = req.params;
     Product.update(req.body, {
